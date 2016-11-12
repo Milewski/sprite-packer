@@ -1,0 +1,16 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "watch": true,
+        "sourceMap": true,
+        "types": [
+            "node",
+            "commander"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

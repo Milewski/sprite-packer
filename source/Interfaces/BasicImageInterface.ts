@@ -1,0 +1,6 @@
+export interface BasicImageInterface {
+    width: number;
+    height: number;
+    x: number;
+    y: number;
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+
+  "definitions": {
+    "engine": {
+      "type": "string",
+      "default": "gm",
+      "enum": [
+        "gm", "node-canvas"
+      ]
+    }
+  },
+
+  "required": [
+    "width", "height"
+  ],
+
+  "properties": {
+
+    "width": {
+      "description": "output final width",
+      "type": "integer",
+      "default": 1024,
+      "minimum": 0
+    },
+
+    "height": {
+      "description": "output final height",
+      "type": "integer",
+      "default": 1024,
+      "minimum": 0
+    },
+
+    "output": {
+      "type": "string",
+      "pattern": "^(.*/)([^/]*)$"
+    },
+
+    "name": {
+      "type": "string",
+      "default": "sprite"
+    },
+
+    "margin": {
+      "type": "number",
+      "minimum": 0,
+      "default": 1
+    },
+
+    "source": {
+      "type": "string",
+      "default": "**/*.{png,jpg}",
+      "pattern": "^(.*/)([^/]*)$"
+    },
+
+    "format": {
+      "type": "string",
+      "default": "png",
+      "enum": [
+        "png", "jpg", "jpeg", "webp", "gif"
+      ]
+    },
+
+    "optimize": {
+      "oneOf": [{
+        "type": "boolean",
+        "default": true
+      }, {
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "quality": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 80
+          },
+          "speed": {
+            "type": "integer",
+            "default": 2,
+            "enum": [
+              1, 2, 3
+            ]
+          },
+          "output": {
+            "type": "string",
+            "default": "./min",
+            "pattern": "^(.*/)([^/]*)$"
+          }
+        }
+      }]
+    },
+
+    "sort": {
+      "type": "string",
+      "default": "automatic",
+      "enum": [
+        "automatic", "width", "height", "area"
+      ]
+    },
+
+    "engine": {
+      "description": "Engine to render out the image",
+      "oneOf": [{
+        "$ref": "#/definitions/engine"
+      }, {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/definitions/engine"
+          },
+          "image-magic": {
+            "type": "boolean"
+          }
+        }
+      }]
+    }
+  }
+
+}

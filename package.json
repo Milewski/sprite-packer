@@ -1,0 +1,41 @@
+{
+  "name": "sprite-packer",
+  "version": "1.0.0",
+  "description": "Sprite Packer",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "packer": "./source/Bin/Packer.js"
+  },
+  "author": "Rafael Milewski",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "calipers": "^2.0.0",
+    "calipers-bmp": "^2.0.0",
+    "calipers-gif": "^2.0.0",
+    "calipers-jpeg": "^2.0.0",
+    "calipers-png": "^2.0.0",
+    "calipers-svg": "^2.0.0",
+    "calipers-webp": "^2.0.0",
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "glob": "^7.1.1",
+    "gm": "^1.23.0",
+    "jsonfile": "^2.4.0",
+    "jsonschema": "^1.1.0",
+    "pngquant-bin": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.0.35",
+    "@types/commander": "^2.3.30",
+    "@types/glob": "^5.0.30",
+    "@types/node": "^6.0.46",
+    "@types/typescript": "^0.4.29",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.7",
+    "yarn": "^0.16.1"
+  }
+}
