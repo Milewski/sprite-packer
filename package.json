@@ -10,7 +10,7 @@
   ],
   "main": "./dist/Index.js",
   "scripts": {
-    "postinstall": "node source/Compiler.ts",
+    "prepublish": "node source/Compiler.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -44,15 +44,16 @@
     "yargs": "^6.3.0"
   },
   "devDependencies": {
-    "@types/jsonschema": "^0.0.4",
     "@types/bluebird": "^3.0.35",
     "@types/chalk": "^0.4.31",
     "@types/glob": "^5.0.30",
     "@types/gm": "^1.17.29",
+    "@types/jsonschema": "^0.0.4",
     "@types/node": "^6.0.46",
     "@types/typescript": "^0.4.29",
     "@types/yargs": "^6.3.1",
     "tslint": "^3.15.1",
+    "typescript": "^2.0.9",
     "yarn": "^0.16.1"
   }
 }

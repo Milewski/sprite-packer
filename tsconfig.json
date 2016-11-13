@@ -5,6 +5,7 @@
         "target": "es5",
         "watch": false,
         "sourceMap": true,
+        "removeComments": true,
         "sourceRoot": "./source",
         "outDir": "./dist",
         "types": [
