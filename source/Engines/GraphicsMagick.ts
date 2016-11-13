@@ -6,7 +6,7 @@ let Promisse = require('bluebird'),
 export class GraphicsMagick implements EngineInterface {
 
     public create(images, {width, height, path, format}) {
-console.log(width, height)
+
         let frame = gm(width, height, 'transparent');
 
         return new Promisse(function (accept, reject) {

@@ -1,0 +1,61 @@
+{
+    "w": {
+        "alias": "width",
+        "description": "Desired Width (in pixel).",
+        "type": "number"
+    },
+    "h": {
+        "alias": "height",
+        "description": "Desired Height (in pixel).",
+        "type": "number"
+    },
+    "e": {
+        "alias": "engine",
+        "description": "Engine to render out the images.",
+        "type": "string"
+    },
+    "c": {
+        "alias": "config",
+        "description": "Specify a custom configuration file. defaults to spirit.json."
+    },
+    "O": {
+        "alias": "output",
+        "description": "Specify where the file result should be saved.",
+        "type": "string"
+    },
+    "s": {
+        "alias": "source",
+        "description": "Glob pattern, specify the source files eg. ./**/*.{jpg,png}",
+        "type": "string"
+    },
+    "n": {
+        "alias": "name",
+        "description": "Name of the output file. defaults to sprite.",
+        "type": "string"
+    },
+    "f": {
+        "alias": "format",
+        "description": "Format of the output file. defaults to png",
+        "type": "string"
+    },
+    "m": {
+        "alias": "margin",
+        "description": "Margin given on each sprite during the packing process. defaults to 1 pixel.",
+        "type": "number"
+    },
+    "S": {
+        "alias": "sort",
+        "description": "Sorting algorithm. defaults automatic",
+        "type": "string"
+    },
+    "o": {
+        "alias": "optimize",
+        "description": "Optimize output.",
+        "default": true
+    },
+    "q": {
+        "alias": "optimize-quality",
+        "description": "Optimize quality.",
+        "type": "string"
+    }
+}

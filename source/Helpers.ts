@@ -1,6 +1,6 @@
 /**
  * 
- * Extend Object
+ * Extend Configuration File
  * 
  * @template A
  * @template B
@@ -16,24 +16,41 @@ export const extend = <A, B>(defaults: A, object: B): A & B => {
             return object[property] = extend(defaults[property], object[property]);
         }
 
-        let type = typeof object[property];
+        let objectType = typeof object[property],
+            defaultType = typeof defaults[property];
 
-        if (type !== 'undefined' && typeof defaults[property] !== type) {
+        if (objectType !== 'undefined' && defaultType !== objectType) {
+
+            let alias = first(defaults[property]),
+                isBool = typeof defaults[property][alias];
+
+            if (alias === undefined) {
+                return object[property] = defaults[property];
+            }
 
             object[property] = {
-                enabled: object[property]
+                [alias]: (isBool === 'boolean') ?
+                    object[property] === defaults[property][alias] :
+                    object[property] || defaults[alias]
             };
 
             return object[property] = extend(defaults[property], object[property]);
 
         }
 
-        object[property] = object[property] === undefined ? defaults[property] : object[property];
+        return object[property] = object[property] === undefined ? defaults[property] : object[property];
 
     });
 
     return <A & B>object;
 
+};
+
+/**
+ * Get The first property name of an object
+ */
+export const first = function (object: {}): string {
+    for (let property in object) return property;
 };
 
 /**

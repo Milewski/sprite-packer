@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 
+import { Page } from './../Page';
 import { SpritePacker } from './../Index';
 
-let program = require('commander'),
-    json = require('jsonfile'),
-    chalk = require('chalk');
-
-program
-    .version('1.0');
+const chalk = require('chalk');
 
 function Boolean(input: string) {
 
@@ -19,50 +15,39 @@ function Boolean(input: string) {
 
 }
 
-program
-    .arguments('<config>')
-    .option('-w, --width [number]', 'Desired Width', parseInt)
-    .option('-e, --engine [string]', 'Engine to render out the images. defaults to [gm]', 'gm')
-    .option('-c, --config [path]', 'Specify a custom configuration file. defaults to spirit.json in the current directory.', false)
-    .option('-o, --optimize [boolean]', 'Optimize output.', Boolean)
-    .parse(process.argv);
+try {
 
-const userConfig = (typeof program.config === 'string') ? program.config : false;
+    let options = require('yargs')
+        .options(require('../../arguments.json'))
+        .coerce('optimize', value => {
+            return typeof value === 'string' ? Boolean(value) : value;
+        })
+        .help()
+        .wrap(null)
+        .epilog('copyright 2015')
+        .argv;
 
-json.readFile(userConfig || './spirit.json', function (error, config) {
-
-    if (error) {
-
-        if (userConfig) {
-            return console.log('you provided wrong config');
+    /**
+     * Clean up undefined values
+     */
+    for (let property in options) {
+        if (options[property] === undefined || property.length <= 2) {
+            delete options[property];
         }
-        // return console.error(
-        //     chalk.yellow('Configuration file not found. Please place a spirit.json file in your root directory.')
-        // );
     }
 
-    try {
+    options.config = (typeof options.config === 'string') ? options.config : false;
 
-        let options = program.opts();
+    const spirit = new SpritePacker(options);
 
-        for (let property in options) {
-            if (options[property] === undefined) {
-                delete options[property];
-            }
-        }
+} catch (error) {
 
-        const spirit = new Spirit(options);
+    if (error instanceof Array) {
+        error.forEach(e => console.error(chalk.red(e)));
+    } else {
+        console.error(chalk.yellow(error));
+    }
 
-    } catch (error) {
+    process.exit(1);
 
-        if (error instanceof Array) {
-            error.forEach(e => console.error(chalk.red(e)));
-        } else {
-            console.error(chalk.yellow(error));
-        }
-
-        process.exit(1);
-
-    };
-
-});
+};

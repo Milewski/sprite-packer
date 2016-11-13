@@ -10,23 +10,23 @@ import { Page } from './Page';
 import { PeterPacker } from './Classes/PeterPacker';
 import { Sort } from './Sort';
 import { Validator } from 'jsonschema';
+import { execFile } from 'child_process';
 
 const fs = require('fs');
-const execFile = require('child_process').execFile;
+const path = require('path');
 const calipers = require('calipers')('png', 'jpeg', 'webp', 'gif', 'svg');
-
 const chalk = require('chalk');
 const glob = require('glob'),
-    layout = require('layout'),
     Promise = require('bluebird'),
-    json = require('jsonfile'),
-    PngQuant = require('pngquant');
+    json = require('jsonfile');
 
+/**
+ * SpritePacker
+ */
 export class SpritePacker {
 
     private packer: PackerInterface;
     private engine: EngineInterface;
-    private output: any;
     private validator = new Validator();
     private schema: OptionsInterface = require('../schema.json');
     private options: OptionsInterface;
@@ -39,6 +39,9 @@ export class SpritePacker {
 
     get defaults(): OptionsInterface {
         return {
+            config: {
+                path: 'spirit.json'
+            },
             width: 1024,
             height: 1024,
             engine: 'gm',
@@ -57,10 +60,27 @@ export class SpritePacker {
         };
     }
 
+    /**
+     * Creates an instance of SpritePacker.
+     * 
+     * @param {OptionsInterface} options
+     */
     constructor(options: OptionsInterface) {
 
-        this.options = extend(this.defaults, options);
-        console.log(this.options);
+        let defaults = this.defaults;
+
+        try {
+            options = extend(
+                json.readFileSync(
+                    path.normalize(options.config || defaults.config.path)
+                ), options
+            );
+        } catch (error) {
+            if (options.config) throw error;
+        }
+
+        this.options = extend(defaults, options);
+
         /**
          * @todo Wrap out the error to display which property is wrong...
          * 
@@ -86,7 +106,7 @@ export class SpritePacker {
     */
     private cleanOutputDir() {
         return new Promise((accept, reject) => {
-            glob(`${this.options.output}/${this.options.name}-*`)
+            glob(path.normalize(`${this.options.output}/${this.options.name}-*`))
                 .on('match', fs.unlinkSync)
                 .on('end', accept)
                 .on('error', reject);
@@ -186,14 +206,14 @@ export class SpritePacker {
         for (let num in bins) {
 
             const data = {
-                format, width, height, path: `${output}/${name}-${num}.${format}`,
+                format, width, height, path: path.normalize(`${output}/${name}-${num}.${format}`),
             };
 
             const promise = this.engine.create(<Image[]>bins[num], data);
 
             if (optimize.enabled) promise.then(() => this.optimize(num, data.path));
 
-            let file = `${output}/${name}-${num}.json`,
+            let file = path.normalize(`${output}/${name}-${num}.json`),
                 meta = bins[num].map((image: Image) => image.export());
 
             json.writeFile(file, keyBy(meta, 'name'), { spaces: 2 }, error => {
@@ -205,7 +225,7 @@ export class SpritePacker {
         }
 
         Promise.all(promises).then(function () {
-            console.log('done');
+            console.log('Finished');
         });
 
     }

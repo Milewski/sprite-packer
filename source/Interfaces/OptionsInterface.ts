@@ -16,4 +16,7 @@ export interface OptionsInterface {
     optimize?: OptimizeInterface;
     sort?: string;
     margin?: number;
+    config?: {
+        path: string
+    };
 }
