@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-import { Page } from './../Page';
-import { SpritePacker } from './../Index';
+import { SpritePacker } from './../SpritePacker';
 
 const chalk = require('chalk');
 

@@ -1,7 +1,7 @@
 import { BasicImageInterface } from './../Interfaces/BasicImageInterface';
-import { Image } from './../Image';
+import { Image } from '../Classes/Image';
 import { PackerInterface } from './../Interfaces/PackerInterface';
-import { Sort } from './../Sort';
+import { Sort } from '../Classes/Sort';
 
 export abstract class AbstractPacker implements PackerInterface {
 
@@ -25,6 +25,6 @@ export abstract class AbstractPacker implements PackerInterface {
         return (new Sort(images, algorithm)).sort();
     }
 
-    abstract pack(images: Image[], sortAlgorithm: string): Image[];
+    abstract pack(images: Image[]): Image[];
 
 }

@@ -1,4 +1,4 @@
-import { Image } from './../Image';
+import { Image } from './../Classes/Image';
 import { SizeInterface } from './SizeInterface';
 
 interface InputInterface extends SizeInterface {

@@ -5,3 +5,4 @@ node_modules
 *.map
 spirit.json
 npm-debug.log
+/dist

@@ -2,19 +2,17 @@ import { extend, groupBy, keyBy, toCamelCase } from './Helpers';
 
 import { EngineInterface } from './Interfaces/EngineInterface';
 import { GraphicsMagick } from './Engines/GraphicsMagick';
-import { Image } from './Image';
+import { Image } from './Classes/Image';
 import { OptionsInterface } from './interfaces/OptionsInterface';
-import { Packer } from './Classes/Packer';
 import { PackerInterface } from './Interfaces/PackerInterface';
-import { Page } from './Page';
-import { PeterPacker } from './Classes/PeterPacker';
-import { Sort } from './Sort';
+import { PeterPacker } from './Packers/PeterPacker';
+import { Sort } from './Classes/Sort';
 import { Validator } from 'jsonschema';
 import { execFile } from 'child_process';
 
 const fs = require('fs');
 const path = require('path');
-const calipers = require('calipers')('png', 'jpeg', 'webp', 'gif', 'svg');
+const calipers = require('calipers')(...['png', 'jpeg', 'webp', 'gif', 'svg']);
 const chalk = require('chalk');
 const glob = require('glob'),
     Promise = require('bluebird'),

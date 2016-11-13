@@ -1,5 +1,5 @@
 import { BasicImageInterface } from './BasicImageInterface';
-import { Image } from './../Image';
+import { Image } from './../Classes/Image';
 
 export interface PackerInterface {
 

@@ -21,6 +21,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/jsonschema":
+  version "0.0.4"
+  resolved "http://registry.npm.taobao.org/@types/jsonschema/download/@types/jsonschema-0.0.4.tgz#03b7a412ac82478681ea88414821b1b81dd0c3e6"
+
 "@types/minimatch@*":
   version "2.0.29"
   resolved "http://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
@@ -2354,10 +2358,6 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
 typedarray@~0.0.5:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-typescript@^2.0.7:
-  version "2.1.1"
-  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.1.1.tgz#41c2b64472f529331b2055c0424862b44ce58d42"
 
 underscore.string@^3.3.4:
   version "3.3.4"

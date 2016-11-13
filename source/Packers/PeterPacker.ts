@@ -1,8 +1,8 @@
 import { AbstractPacker } from './../Abstract/AbstractPacker';
 import { BasicImageInterface } from './../Interfaces/BasicImageInterface';
-import { Image } from './../Image';
+import { Image } from '../Classes/Image';
 import { PackerInterface } from './../Interfaces/PackerInterface';
-import { Sort } from './../Sort';
+import { Sort } from '../Classes/Sort';
 import Promise = require('bluebird');
 
 export class PeterPacker extends AbstractPacker {
@@ -27,15 +27,14 @@ export class PeterPacker extends AbstractPacker {
 
     }
 
-    private fit(image: Image, bin: number) {
+    private fit(image: Image, bin: number): Image | void {
 
         let node = this.process(this.bin, image);
 
-        if (node) {
-            return image.setPacking(bin, this.split(node, image.width, image.height));
-        }
+        if (!node) return image;
 
-        return image;
+        image.setPacking(bin, this.split(node, image.width, image.height));
+
     }
 
     process(root, image: Image) {

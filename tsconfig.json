@@ -3,13 +3,17 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "watch": true,
+        "watch": false,
         "sourceMap": true,
+        "sourceRoot": "./source",
+        "outDir": "./dist",
         "types": [
-            "node",
-            "commander"
+            "node", "jsonschema"
         ]
     },
+    "include": [
+        "source/**/*"
+    ],
     "exclude": [
         "node_modules"
     ]

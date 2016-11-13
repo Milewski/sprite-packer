@@ -1,5 +1,5 @@
-import { PackingDataInterface } from './Interfaces/PackingDataInterface';
-import { SizeInterface } from './Interfaces/SizeInterface';
+import { PackingDataInterface } from '../Interfaces/PackingDataInterface';
+import { SizeInterface } from '../Interfaces/SizeInterface';
 const pather = require('path');
 
 export class Image {
