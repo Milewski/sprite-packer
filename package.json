@@ -1,6 +1,6 @@
 {
   "name": "sprite-packer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert a bunch of images to spritesheet with JSON sprite data",
   "keywords": [
     "webp",
