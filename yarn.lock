@@ -4,17 +4,21 @@
   version "3.0.35"
   resolved "http://registry.npm.taobao.org/@types/bluebird/download/@types/bluebird-3.0.35.tgz#e6e2d375a7b7a0a22f155ce74eb28d0da303740c"
 
-"@types/commander@^2.3.30":
-  version "2.3.30"
-  resolved "http://registry.npm.taobao.org/@types/commander/download/@types/commander-2.3.30.tgz#4dbfb273093bb302541f429dd8a3a1d499c463b0"
-  dependencies:
-    "@types/node" "*"
+"@types/chalk@^0.4.31":
+  version "0.4.31"
+  resolved "http://registry.npm.taobao.org/@types/chalk/download/@types/chalk-0.4.31.tgz#a31d74241a6b1edbb973cf36d97a2896834a51f9"
 
 "@types/glob@^5.0.30":
   version "5.0.30"
   resolved "http://registry.npm.taobao.org/@types/glob/download/@types/glob-5.0.30.tgz#1026409c5625a8689074602808d082b2867b8a51"
   dependencies:
     "@types/minimatch" "*"
+    "@types/node" "*"
+
+"@types/gm@^1.17.29":
+  version "1.17.29"
+  resolved "http://registry.npm.taobao.org/@types/gm/download/@types/gm-1.17.29.tgz#39d7d45394621b9f3d9bbb0a6e2724f4c646644b"
+  dependencies:
     "@types/node" "*"
 
 "@types/minimatch@*":
@@ -28,6 +32,10 @@
 "@types/typescript@^0.4.29":
   version "0.4.29"
   resolved "http://registry.npm.taobao.org/@types/typescript/download/@types/typescript-0.4.29.tgz#2a020387a076262e915e1fd4cba3df93dd7d6e49"
+
+"@types/yargs@^6.3.1":
+  version "6.3.1"
+  resolved "http://registry.npm.taobao.org/@types/yargs/download/@types/yargs-6.3.1.tgz#5ca7f6a5ac66d435fedabe6e15bced609f9054f8"
 
 abbrev@1:
   version "1.0.9"
