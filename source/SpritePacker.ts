@@ -229,7 +229,7 @@ export class SpritePacker {
              * Write Json Data
              */
             let file = path.join(output, `${name}-${num}.json`),
-                meta = bins[num].map((image: Image) => image.export());
+                meta = bins[num].map((image: Image) => image.export(this.options));
 
             json.writeFile(file, keyBy(meta, 'name'), { spaces: 2 }, error => {
                 if (error) console.log(error);

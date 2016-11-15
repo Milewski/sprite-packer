@@ -33,7 +33,7 @@ export class PeterPacker extends AbstractPacker {
 
         if (!node) return image;
 
-        image.setPacking(bin, this.split(node, image.width, image.height));
+        image.pack(bin, this.split(node, image.width, image.height));
 
     }
 
