@@ -7,5 +7,5 @@ interface InputInterface extends SizeInterface {
 }
 
 export interface EngineInterface {
-    create<A>(images: Image[], options: InputInterface): PromiseLike<A>;
+    create(images: Image[], options: InputInterface): Promise<void>;
 }

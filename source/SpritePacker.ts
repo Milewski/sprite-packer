@@ -1,6 +1,7 @@
 import { extend, groupBy, keyBy, toCamelCase } from './Helpers';
 
 import { EngineInterface } from './Interfaces/EngineInterface';
+import { Error } from './Classes/Error';
 import { GraphicsMagick } from './Engines/GraphicsMagick';
 import { Image } from './Classes/Image';
 import { OptionsInterface } from './interfaces/OptionsInterface';
@@ -10,10 +11,9 @@ import { Sort } from './Classes/Sort';
 import { Validator } from 'jsonschema';
 import { execFile } from 'child_process';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const calipers = require('calipers')(...['png', 'jpeg', 'webp', 'gif', 'svg']);
-const chalk = require('chalk');
 const glob = require('glob'),
     Promise = require('bluebird'),
     json = require('jsonfile');
@@ -38,7 +38,7 @@ export class SpritePacker {
     get defaults(): OptionsInterface {
         return {
             config: {
-                path: 'spirit.json'
+                path: 'sprite.json'
             },
             width: 1024,
             height: 1024,
@@ -50,7 +50,7 @@ export class SpritePacker {
             margin: 1,
             sort: Sort.AUTOMATIC,
             optimize: {
-                enabled: true,
+                enabled: false,
                 quality: 80,
                 speed: 2,
                 output: './min'
@@ -204,18 +204,35 @@ export class SpritePacker {
         for (let num in bins) {
 
             const data = {
-                format, width, height, path: path.normalize(`${output}/${name}-${num}.${format}`),
+                format, width, height, path: path.join(output, `${name}-${num}.${format}`),
             };
 
-            const promise = this.engine.create(<Image[]>bins[num], data);
+            /**
+             * Create Dir
+             */
+            try {
+                fs.mkdirsSync(path.join(output, optimize.enabled ? optimize.output : ''));
+            } catch (error) {
+                Error.handle(Error.DIR, 1);
+            }
+
+            /**
+             * Create Sprite
+             */
+            const promise = this.engine
+                .create(<Image[]>bins[num], data)
+                .catch(Error.handle);
 
             if (optimize.enabled) promise.then(() => this.optimize(num, data.path));
 
-            let file = path.normalize(`${output}/${name}-${num}.json`),
+            /**
+             * Write Json Data
+             */
+            let file = path.join(output, `${name}-${num}.json`),
                 meta = bins[num].map((image: Image) => image.export());
 
             json.writeFile(file, keyBy(meta, 'name'), { spaces: 2 }, error => {
-                if (error) throw error;
+                if (error) console.log(error);
             });
 
             promises.push(promise);
@@ -228,12 +245,13 @@ export class SpritePacker {
 
     }
 
-    private optimize(num: string | number, path: string) {
+    private optimize(num: string | number, input: string) {
 
         const pngquant = require('pngquant-bin'),
-            { output, name, format, optimize} = this.options;
+            { output, name, format, optimize} = this.options,
+            destination = path.join(output, optimize.output, `${name}-${num}.min.${format}`);
 
-        execFile(pngquant, ['--speed', optimize.speed, '--quality', optimize.quality, '-o', `${output}/${optimize.output}/${name}-${num}.min.${format}`, path], error => {
+        execFile(pngquant, ['--speed', optimize.speed, '--quality', optimize.quality, '-o', destination, input], error => {
             if (error) throw error;
         });
     }

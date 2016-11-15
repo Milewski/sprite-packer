@@ -22,11 +22,8 @@ export class GraphicsMagick implements EngineInterface {
                 .mosaic()
                 .background('transparent');
 
-            frame.write(path, function (err) {
-                accept();
-            });
+            frame.write(path, error => error ? reject(error) : accept());
 
         });
     }
-
 }

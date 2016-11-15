@@ -21,7 +21,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jsonschema":
+"@types/jsonschema@^0.0.4":
   version "0.0.4"
   resolved "http://registry.npm.taobao.org/@types/jsonschema/download/@types/jsonschema-0.0.4.tgz#03b7a412ac82478681ea88414821b1b81dd0c3e6"
 
@@ -30,16 +30,16 @@
   resolved "http://registry.npm.taobao.org/@types/minimatch/download/@types/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
 
 "@types/node@*", "@types/node@^6.0.46":
-  version "6.0.46"
-  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-6.0.46.tgz#8d9e48572831f05b11cc4c793754d43437219d62"
+  version "6.0.47"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-6.0.47.tgz#07dd004f05d0b74344ebf943b559659bd7f445b1"
 
 "@types/typescript@^0.4.29":
   version "0.4.29"
   resolved "http://registry.npm.taobao.org/@types/typescript/download/@types/typescript-0.4.29.tgz#2a020387a076262e915e1fd4cba3df93dd7d6e49"
 
 "@types/yargs@^6.3.1":
-  version "6.3.1"
-  resolved "http://registry.npm.taobao.org/@types/yargs/download/@types/yargs-6.3.1.tgz#5ca7f6a5ac66d435fedabe6e15bced609f9054f8"
+  version "6.3.2"
+  resolved "http://registry.npm.taobao.org/@types/yargs/download/@types/yargs-6.3.2.tgz#cc744e1f0b75727e35b82ae0a0a1c7ff46212577"
 
 abbrev@1:
   version "1.0.9"
@@ -864,6 +864,14 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+fs-extra@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/fs-extra/download/fs-extra-1.0.0.tgz#cd3ce5f7e7cb6145883fcae3191e9877f8587950"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^2.1.0"
+    klaw "^1.0.0"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -1010,7 +1018,7 @@ got@^5.0.0:
     unzip-response "^1.0.2"
     url-parse-lax "^1.0.0"
 
-graceful-fs@^4.0.0, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
+graceful-fs@^4.0.0, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.10"
   resolved "http://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.1.10.tgz#f2d720c22092f743228775c75e3612632501f131"
 
@@ -1358,7 +1366,7 @@ json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "http://registry.npm.taobao.org/json-stringify-safe/download/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
-jsonfile@^2.4.0:
+jsonfile@^2.1.0, jsonfile@^2.4.0:
   version "2.4.0"
   resolved "http://registry.npm.taobao.org/jsonfile/download/jsonfile-2.4.0.tgz#3736a2b428b87bbda0cc83b53fa3d633a35c2ae8"
   optionalDependencies:
@@ -1396,6 +1404,12 @@ kind-of@^3.0.2:
   resolved "http://registry.npm.taobao.org/kind-of/download/kind-of-3.0.4.tgz#7b8ecf18a4e17f8269d73b501c9f232c96887a74"
   dependencies:
     is-buffer "^1.0.2"
+
+klaw@^1.0.0:
+  version "1.3.1"
+  resolved "http://registry.npm.taobao.org/klaw/download/klaw-1.3.1.tgz#4088433b46b3b1ba259d78785d8e96f73ba02439"
+  optionalDependencies:
+    graceful-fs "^4.1.9"
 
 lazy-req@^1.0.0:
   version "1.1.0"
@@ -1951,8 +1965,8 @@ read@^1.0.7:
     mute-stream "~0.0.4"
 
 readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5:
-  version "2.2.1"
-  resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.2.1.tgz#c459a6687ad6195f936b959870776edef27a7655"
+  version "2.2.2"
+  resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
   dependencies:
     buffer-shims "^1.0.0"
     core-util-is "~1.0.0"
@@ -2359,9 +2373,9 @@ typedarray@~0.0.5:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript:
-  version "2.0.9"
-  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.0.9.tgz#b4f5fecc3f44d5c717f3b3e7c331e5bbb147a53d"
+typescript@^2.0.9:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.1.1.tgz#41c2b64472f529331b2055c0424862b44ce58d42"
 
 underscore.string@^3.3.4:
   version "3.3.4"
@@ -2534,15 +2548,15 @@ yallist@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/yallist/download/yallist-2.0.0.tgz#306c543835f09ee1a4cb23b7bce9ab341c91cdd4"
 
-yargs-parser@^4.0.2:
+yargs-parser@^4.1.0:
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/yargs-parser/download/yargs-parser-4.1.0.tgz#313df030f20124124aeae8fbab2da53ec28c56d7"
   dependencies:
     camelcase "^3.0.0"
 
 yargs@^6.3.0:
-  version "6.3.0"
-  resolved "http://registry.npm.taobao.org/yargs/download/yargs-6.3.0.tgz#19c6dbb768744d571eb6ebae0c174cf2f71b188d"
+  version "6.4.0"
+  resolved "http://registry.npm.taobao.org/yargs/download/yargs-6.4.0.tgz#816e1a866d5598ccf34e5596ddce22d92da490d4"
   dependencies:
     camelcase "^3.0.0"
     cliui "^3.2.0"
@@ -2557,7 +2571,7 @@ yargs@^6.3.0:
     which-module "^1.0.0"
     window-size "^0.2.0"
     y18n "^3.2.1"
-    yargs-parser "^4.0.2"
+    yargs-parser "^4.1.0"
 
 yarn@^0.16.1:
   version "0.16.1"

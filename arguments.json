@@ -51,7 +51,7 @@
     "o": {
         "alias": "optimize",
         "description": "Optimize output.",
-        "default": true
+        "default": "false"
     },
     "q": {
         "alias": "optimize-quality",

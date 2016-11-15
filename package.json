@@ -1,6 +1,6 @@
 {
   "name": "sprite-packer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Convert a bunch of images to spritesheet with JSON sprite data",
   "keywords": [
     "webp",
@@ -36,6 +36,7 @@
     "calipers-svg": "^2.0.0",
     "calipers-webp": "^2.0.0",
     "chalk": "^1.1.3",
+    "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
     "gm": "^1.23.0",
     "jsonfile": "^2.4.0",

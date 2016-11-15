@@ -24,13 +24,15 @@ export const extend = <A, B>(defaults: A, object: B): A & B => {
             let alias = first(defaults[property]),
                 isBool = typeof defaults[property][alias];
 
-            if (alias === undefined) {
+            if (alias === undefined && typeof (object[property]) === 'undefined') {
                 return object[property] = defaults[property];
+            } else if (object[property]) {
+                return object[property] = String(object[property]).toLowerCase() === 'true';
             }
 
             object[property] = {
                 [alias]: (isBool === 'boolean') ?
-                    object[property] === defaults[property][alias] :
+                    object[property] !== defaults[property][alias] :
                     object[property] || defaults[alias]
             };
 
