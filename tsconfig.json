@@ -1,24 +1,23 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "watch": false,
-        "sourceMap": true,
-        "removeComments": true,
-        "sourceRoot": "./source",
-        "outDir": "./dist",
-        "lib": [
-            "es6"
-        ],
-        "types": [
-            "node", "jsonschema"
-        ]
-    },
-    "include": [
-        "source/**/*"
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "watch": false,
+    "sourceMap": false,
+    "removeComments": true,
+    "lib": [
+      "es6"
     ],
-    "exclude": [
-        "node_modules"
+    "types": [
+      "node",
+      "jsonschema"
     ]
+  },
+  // "include": [
+  //     // "source/**/*"
+  // ],
+  "exclude": [
+    "node_modules"
+  ]
 }

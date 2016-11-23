@@ -8,13 +8,14 @@
     "sprites",
     "sprite"
   ],
-  "main": "./dist/Index.js",
+  "main": "./distribution/index.js",
   "scripts": {
-    "prepublish": "node source/Compiler.ts",
+    "compile": "./node_modules/.bin/tsc",
+    "build": "npm run compile && ./node_modules/.bin/webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "packer": "./dist/Bin/Packer.js"
+    "packer": "./distribution/bin/packer.js"
   },
   "repository": {
     "type": "git",
@@ -36,12 +37,15 @@
     "calipers-svg": "^2.0.0",
     "calipers-webp": "^2.0.0",
     "chalk": "^1.1.3",
+    "defaults-extender": "^1.0.0",
     "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
     "gm": "^1.23.0",
+    "json-loader": "^0.5.4",
     "jsonfile": "^2.4.0",
     "jsonschema": "^1.1.0",
     "pngquant-bin": "^3.1.1",
+    "shebang-loader": "^0.0.1",
     "typescript": "^2.0.9",
     "yargs": "^6.3.0"
   },
@@ -54,8 +58,12 @@
     "@types/node": "^6.0.46",
     "@types/typescript": "^0.4.29",
     "@types/yargs": "^6.3.1",
+    "babel-register": "^6.18.0",
+    "electron": "^1.4.6",
+    "json-loader": "^0.5.4",
     "tslint": "^3.15.1",
     "typescript": "^2.0.9",
+    "webpack": "^1.13.3",
     "yarn": "^0.16.1"
   }
 }

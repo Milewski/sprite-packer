@@ -23,7 +23,7 @@ try {
         })
         .help()
         .wrap(null)
-        .epilog('copyright 2015')
+        .epilog('copyright 2016')
         .argv;
 
     /**
@@ -37,7 +37,7 @@ try {
 
     options.config = (typeof options.config === 'string') ? options.config : false;
 
-    const spirit = new SpritePacker(options);
+    const packer = new SpritePacker(options);
 
 } catch (error) {
 

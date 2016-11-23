@@ -26,7 +26,7 @@ export class SpritePacker {
     private packer: PackerInterface;
     private engine: EngineInterface;
     private validator = new Validator();
-    private schema: OptionsInterface = require('../schema.json');
+    private schema: OptionsInterface = require('json!../schema.json');
     private options: OptionsInterface;
 
     get engines() {
@@ -60,7 +60,7 @@ export class SpritePacker {
 
     /**
      * Creates an instance of SpritePacker.
-     * 
+     *
      * @param {OptionsInterface} options
      */
     constructor(options: OptionsInterface) {
@@ -81,7 +81,7 @@ export class SpritePacker {
 
         /**
          * @todo Wrap out the error to display which property is wrong...
-         * 
+         *
          * Validate configuration file
          */
         const validation = this.validator.validate(this.options, this.schema);
@@ -100,8 +100,8 @@ export class SpritePacker {
     }
 
     /**
-    * Clean dir before start
-    */
+     * Clean dir before start
+     */
     private cleanOutputDir() {
         return new Promise((accept, reject) => {
             glob(path.normalize(`${this.options.output}/${this.options.name}-*`))
@@ -112,11 +112,11 @@ export class SpritePacker {
     }
 
     /**
-     * @todo 
-     * 
+     * @todo
+     *
      * 1 - Handle the case where the user might not use a wild card on source and output
      * so for example if he sends ./images thinking it will do as ./images/**\/*.*
-     * 
+     *
      * 2 - clean up callback hell...
      */
     private measure() {
@@ -130,7 +130,7 @@ export class SpritePacker {
                             /**
                              * Mesure all files
                              */
-                            return calipers.measure(path).then(({type, pages}) => {
+                            return calipers.measure(path).then(({ type, pages }) => {
                                 return new Image({
                                     path: path,
                                     type: type,
@@ -142,42 +142,42 @@ export class SpritePacker {
 
                         }, { concurrency: 3 }).then((images: Image[]) => {
 
-                            /**
-                             * Prevent creating if any of the given images
-                             * has width way bigger than the maxium specified
-                             */
-                            const errors = [];
+                        /**
+                         * Prevent creating if any of the given images
+                         * has width way bigger than the maxium specified
+                         */
+                        const errors = [];
 
-                            let totalWidth = 0,
-                                totalHeight = 0;
+                        let totalWidth = 0,
+                            totalHeight = 0;
 
-                            for (let {width, height, path, name} of images) {
+                        for (let { width, height, path, name } of images) {
 
-                                totalWidth += width;
-                                totalHeight += height;
+                            totalWidth += width;
+                            totalHeight += height;
 
-                                if (width > this.options.width || height > this.options.height) {
-                                    errors.push(
-                                        `Maximium Dimension Exceeded: ${name}' -> ${width}x${height} -> ${width}x${height}`
-                                    );
-                                }
-
+                            if (width > this.options.width || height > this.options.height) {
+                                errors.push(
+                                    `Maximium Dimension Exceeded: ${name}' -> ${width}x${height} -> ${width}x${height}`
+                                );
                             }
 
-                            /**
-                             * Decide which sorting algorithm to use 
-                             */
-                            if (this.options.sort === Sort.AUTOMATIC) {
-                                this.options.sort = (totalWidth < totalHeight ? Sort.WIDTH : Sort.HEIGHT);
-                            }
+                        }
 
-                            if (errors.length) {
-                                throw errors;
-                            }
+                        /**
+                         * Decide which sorting algorithm to use
+                         */
+                        if (this.options.sort === Sort.AUTOMATIC) {
+                            this.options.sort = (totalWidth < totalHeight ? Sort.WIDTH : Sort.HEIGHT);
+                        }
 
-                            return images;
+                        if (errors.length) {
+                            throw errors;
+                        }
 
-                        })
+                        return images;
+
+                    })
                         .then(accept)
                         .catch(reject);
 
@@ -197,7 +197,7 @@ export class SpritePacker {
             this.packer.sort(images, this.options.sort)
         );
 
-        let {output, name, format, width, height, optimize} = this.options,
+        let { output, name, format, width, height, optimize } = this.options,
             bins = groupBy(packaged, 'bin'),
             promises = [];
 
@@ -246,14 +246,9 @@ export class SpritePacker {
     }
 
     private optimize(num: string | number, input: string) {
-
-        const pngquant = require('pngquant-bin'),
-            { output, name, format, optimize} = this.options,
-            destination = path.join(output, optimize.output, `${name}-${num}.min.${format}`);
-
-        execFile(pngquant, ['--speed', optimize.speed, '--quality', optimize.quality, '-o', destination, input], error => {
-            if (error) throw error;
-        });
+        // execFile(pngquant, ['--speed', optimize.speed, '--quality', optimize.quality, '-o', destination, input], error => {
+        //     if (error) throw error;
+        // });
     }
 
 }

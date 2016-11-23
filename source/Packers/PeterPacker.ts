@@ -1,9 +1,5 @@
 import { AbstractPacker } from './../Abstract/AbstractPacker';
-import { BasicImageInterface } from './../Interfaces/BasicImageInterface';
 import { Image } from '../Classes/Image';
-import { PackerInterface } from './../Interfaces/PackerInterface';
-import { Sort } from '../Classes/Sort';
-import Promise = require('bluebird');
 
 export class PeterPacker extends AbstractPacker {
 
@@ -37,7 +33,7 @@ export class PeterPacker extends AbstractPacker {
 
     }
 
-    process(root, image: Image) {
+    private process(root, image: Image) {
 
         if (root.used)
             return this.process(root.right, image) || this.process(root.down, image);
@@ -48,7 +44,7 @@ export class PeterPacker extends AbstractPacker {
 
     }
 
-    split(node, width, height) {
+    private split(node, width, height) {
         node.used = true;
         node.down = { x: node.x, y: node.y + height, width: node.width, height: node.height - height };
         node.right = { x: node.x + width, y: node.y, width: node.width - width, height };

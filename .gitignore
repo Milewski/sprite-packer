@@ -1,8 +1,10 @@
 node_modules
 .vscode
+.idea
 .DS_Store
 *.js
 *.map
+source/*.d.ts
 spirit.json
 npm-debug.log
-dist
+distribution
