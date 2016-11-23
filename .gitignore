@@ -3,6 +3,7 @@ node_modules
 .idea
 .DS_Store
 *.js
+!webpack.config.js
 *.map
 source/*.d.ts
 spirit.json
